@@ -60,8 +60,8 @@ class RidgeReference(Regressor):
 
 
 MODELS: dict[str, ModelSpec] = {
-    "baseline": ModelSpec(features=[price_lag_168h], regressor=WeeklyNaive()),
-    "reference": ModelSpec(
+    "dummy_model": ModelSpec(features=[price_lag_168h], regressor=WeeklyNaive()),
+    "baseline": ModelSpec(
         features=[
             FeatureSpec("price_day_ahead", PRICE, lag=timedelta(hours=48)),
             price_lag_168h,

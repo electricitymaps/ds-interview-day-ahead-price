@@ -10,7 +10,7 @@
 
 ## 3. Results
 
-<!-- Your model vs the weekly-naive baseline on the test month (nMAE, RMSE). -->
+<!-- Your model vs the baseline (Ridge) on the test month (nMAE, RMSE). -->
 
 ## 4. What I deprioritised and why
 

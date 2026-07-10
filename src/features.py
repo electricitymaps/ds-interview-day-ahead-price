@@ -54,7 +54,7 @@ def build_features(features: list[Feature], index: pd.MultiIndex) -> pd.DataFram
 
 # Autoregressive lag: own-zone price one week earlier: published well before every
 # origin, so populated at all lead times — unlike shorter lags. The weekly-naive
-# baseline predicts with it.
+# dummy_model predicts with it.
 price_lag_168h = FeatureSpec(
     "price_day_ahead", PRICE, lag=timedelta(hours=168), name="price_lag_168h"
 )
