@@ -21,7 +21,7 @@ def regressor_name(regressor) -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", default="reference", choices=sorted(MODELS))
+    parser.add_argument("--model", default="baseline", choices=sorted(MODELS))
     parser.add_argument("--output", default=None, help="defaults to <model>_predictions.parquet")
     args = parser.parse_args()
     spec = MODELS[args.model]

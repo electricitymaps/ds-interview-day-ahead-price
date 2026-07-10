@@ -46,7 +46,8 @@ uv sync
 curl -L -o data.tar.gz "<signed-url-you-received>"
 tar xzf data.tar.gz          # unpacks into data/
 uv run pytest                # sanity check
-uv run python -m src.run --model reference   # first predictions end to end
+uv run python -m src.run --model dummy_model # weekly-naive sanity model
+uv run python -m src.run --model baseline    # the Ridge bar to beat, end to end
 ```
 
 ## The data
@@ -60,10 +61,11 @@ every column. Each signal has a dual temporal index:
 One `target_time` therefore appears in **several rows**, one per `available_at`
 snapshot, capturing how the known value evolved over time.
 
-Once `tar xzf data.tar.gz` has unpacked the files into `data/`, no loading code is
-needed: the scaffold reads every signal from there automatically (`src.data.CATALOG`
-maps signal names to files), and features declared via `FeatureSpec` pull from them
-on demand.
+**Don't worry about data loading — it is already done for you.** Once
+`tar xzf data.tar.gz` has unpacked the files into `data/`, the scaffold reads every
+signal from there automatically (`src.data.CATALOG` maps signal names to files), and
+features declared via `FeatureSpec` pull from them on demand — leakage-safe via
+`pit_lookup`. Your time should go into *which* features and models, not plumbing.
 
 Prices and grid measurements (load, production) are available for **multi-zone**: the column `zone_key` is expressing the zone. You will find data for DE plus its 11 electrical neighbours (CH has load but no production data); weather is DE-only. Select a neighbour via the `zone` argument of `FeatureSpec` / `pit_lookup`.
 
@@ -84,8 +86,8 @@ The plumbing is done so you can spend your time on features and models:
   `pit_lookup`, the point-in-time primitive.
 - `src/features.py` — `build_features()` plus one worked example per mechanism
   (price lag, weather forecast, derived feature, calendar).
-- `src/models.py` — the `MODELS` registry: `baseline` (weekly naive — the bar to
-  beat) and `reference` (minimal Ridge wiring demo).
+- `src/models.py` — the `MODELS` registry: `dummy_model` (weekly naive) and
+  `baseline` (minimal Ridge — the bar to beat).
 - `src/run.py` / `src/score.py` — the generic loop and the scorer.
 
 Adding a feature is one declaration; adding a model is one registry entry:
@@ -125,5 +127,5 @@ just the parquet. Hand-in checklist:
 
 - **AI tools are allowed** — you would use them on the job. Mention notable usage in
   the writeup. A follow-up debrief will go through your choices in depth.
-- Beat the weekly-naive baseline on the test month; beyond that, we grade reasoning,
+- Beat the `baseline` model (Ridge) on the test month; beyond that, we grade reasoning,
   correctness, and prioritisation over raw score.
