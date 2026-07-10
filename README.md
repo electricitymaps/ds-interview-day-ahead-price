@@ -51,11 +51,20 @@ uv run python -m src.run --model reference   # first predictions end to end
 ## The data
 
 `data/` contains nine feature signals plus the target — see `DATA_DICTIONARY.md` for
-every column. Each signal is a bitemporal panel: for one `target_time` there are
-several rows, one per `available_at` snapshot, capturing how the known value evolved.
-Prices and grid measurements (load, production) are **multi-zone**: `zone_key` carries
-DE plus its 11 electrical neighbours (CH has load but no production data); weather is
-DE-only. Select a neighbour via the `zone` argument of `FeatureSpec` / `pit_lookup`.
+every column. Each signal has a dual temporal index:
+
+- `target_time`: the datetime the value describes (delivery interval)
+- `available_at`: when that value became known / was published (tz-aware UTC)
+
+One `target_time` therefore appears in **several rows**, one per `available_at`
+snapshot, capturing how the known value evolved over time.
+
+Once `tar xzf data.tar.gz` has unpacked the files into `data/`, no loading code is
+needed: the scaffold reads every signal from there automatically (`src.data.CATALOG`
+maps signal names to files), and features declared via `FeatureSpec` pull from them
+on demand.
+
+Prices and grid measurements (load, production) are available for **multi-zone**: the column `zone_key` is expressing the zone. You will find data for DE plus its 11 electrical neighbours (CH has load but no production data); weather is DE-only. Select a neighbour via the `zone` argument of `FeatureSpec` / `pit_lookup`.
 
 - **Train:** origins 1 Oct 2025 – 27 Apr 2026 (targets through 30 Apr).
 - **Test:** origins 29 Apr – 29 May 2026 (6-hourly); **only May targets are scored**,
