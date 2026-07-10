@@ -17,7 +17,8 @@ chose to skip and why.**
 
 ## Setup (~5 minutes)
 
-Requires [uv](https://docs.astral.sh/uv/).
+Requires [uv](https://docs.astral.sh/uv/) and Python ≥ 3.12 (pinned in
+`.python-version`; `uv sync` fetches it automatically if missing).
 
 **Step 1: Create a new repo from this template and make it private.**
 
