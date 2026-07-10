@@ -25,8 +25,12 @@ Requires [uv](https://docs.astral.sh/uv/).
 
 ![copy template](./.github/figures/template.png)
 
-**Step 2: Share your new repo with `paul.romieu@electricitymaps.com`**
-(repo Settings → Collaborators → Add people).
+**Step 2: Share your new repo with the reviewers**
+(repo Settings → Collaborators → Add people):
+
+- `paul.romieu@electricitymaps.com`
+- `viktor.andersson@electricitymaps.com`
+- `robin.troesch@electricitymaps.com`
 
 **Step 3: Clone it locally and get the project up and running.**
 
