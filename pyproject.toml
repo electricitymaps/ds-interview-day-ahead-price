@@ -1,0 +1,39 @@
+[project]
+name = "day-ahead-price-case"
+version = "0.1.0"
+description = "Take-home case: day-ahead electricity price forecasting for DE"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas>=2.2",
+    "pyarrow>=16",
+    "scikit-learn>=1.5",
+    "lightgbm>=4.3",
+]
+
+[dependency-groups]
+dev = [
+    "basedpyright>=1.39.9",
+    "pandas-stubs>=3.0.3.260530",
+    "pytest>=8",
+    "ruff>=0.15.21",
+]
+
+[tool.uv]
+required-version = ">=0.8"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.pyright]
+include = ["src"]
+pythonVersion = "3.12"
+typeCheckingMode = "standard"
+reportMissingTypeStubs = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
