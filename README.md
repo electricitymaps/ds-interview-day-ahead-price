@@ -20,6 +20,8 @@ chose to skip and why.**
 Requires [uv](https://docs.astral.sh/uv/).
 
 ```bash
+git clone <your-repo-url>   # the private repo you were invited to
+cd <repo-name>
 uv sync
 curl -L -o data.tar.gz "<signed-url-you-received>"
 tar xzf data.tar.gz          # unpacks into data/
