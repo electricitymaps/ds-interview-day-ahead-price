@@ -30,6 +30,10 @@ Requires [uv](https://docs.astral.sh/uv/).
 
 **Step 3: Clone it locally and get the project up and running.**
 
+The dataset is not in the repo: you download it with the **signed URL you received
+by email** alongside this case (the `<signed-url-you-received>` below). It is valid
+for 7 days; if it has expired or you never got one, ask us for a fresh link.
+
 ```bash
 git clone <your-new-repo-url>
 cd <repo-name>
