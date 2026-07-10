@@ -19,8 +19,19 @@ chose to skip and why.**
 
 Requires [uv](https://docs.astral.sh/uv/).
 
+**Step 1: Create a new repo from this template and make it private.**
+
+👇
+
+![copy template](./.github/figures/template.png)
+
+**Step 2: Share your new repo with `paul.romieu@electricitymaps.com`**
+(repo Settings → Collaborators → Add people).
+
+**Step 3: Clone it locally and get the project up and running.**
+
 ```bash
-git clone <your-repo-url>   # the private repo you were invited to
+git clone <your-new-repo-url>
 cd <repo-name>
 uv sync
 curl -L -o data.tar.gz "<signed-url-you-received>"
@@ -75,7 +86,8 @@ reproduces your submission.
 
 ## Deliverables
 
-Send the whole repo back (repo link or zip — not just the parquet). Hand-in checklist:
+Push everything to your repo (shared in Step 2) — the whole repo is the hand-in, not
+just the parquet. Hand-in checklist:
 
 - [ ] **`<model>_predictions.parquet`** from your **final** model (`run.py` names the
       file after the registry entry). Columns: `ref_time`, `target_time` (exactly the
