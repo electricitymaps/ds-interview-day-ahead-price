@@ -90,6 +90,17 @@ The plumbing is done so you can spend your time on features and models:
   `baseline` (minimal Ridge — the bar to beat).
 - `src/run.py` / `src/score.py` — the generic loop and the scorer.
 
+**You are encouraged to create your own features.** Three mechanisms, each with a
+worked example in `src/features.py`:
+
+- **Tap a new signal**: a `FeatureSpec` can pull any column of any `CATALOG` signal,
+  for any zone, at any lag — most of the nine signals are wired to nothing yet.
+- **Combine existing features**: a `DerivedFeature` computes a new column from other
+  features (see `price_wow_change`: yesterday's price minus the week before). Ratios,
+  spreads, deltas, interactions — anything expressible as a function of its inputs.
+- **Calendar / structural**: a `CalendarFeature` derives from the
+  `(ref_time, target_time)` index alone (hour of day, lead time, ...).
+
 Adding a feature is one declaration; adding a model is one registry entry:
 
 ```python
