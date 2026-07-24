@@ -32,7 +32,8 @@ Requires [uv](https://docs.astral.sh/uv/) and Python ≥ 3.12 (pinned in
 - `paul.romieu@electricitymaps.com`
 - `viktor.andersson@electricitymaps.com`
 - `robin.troesch@electricitymaps.com`
-
+- `bastien.bigue@electricitymaps.com`
+  
 **Step 3: Clone it locally and get the project up and running.**
 
 The dataset is not in the repo: you download it with the **signed URL you received
